@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" 薛玉瑶的博客" />
+  
+  <meta name="theme-color" content="#hexcolor" />
+ 
+  <meta property="og:site_name" content="薛玉瑶的博客" />
+  <meta property="og:url" content="https://www.xueyuyao.com/" />
+  
+  
+  <meta property="og:type" content="website" />
+  
+
+  <title>
+     薛玉瑶的博客
+  </title>
+
+  <link rel="stylesheet" href="https://www.xueyuyao.com/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://www.xueyuyao.com/css/main.css" />
+  <link rel="stylesheet" href="https://www.xueyuyao.com/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://www.xueyuyao.com/css/github.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="https://www.xueyuyao.com/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://www.xueyuyao.com/images/apple-touch-icon.png" />
+  
+  <link href="https://www.xueyuyao.com/index.xml" rel="alternate" type="application/rss+xml" title="薛玉瑶的博客" />
+  
+</head>
+<body>
+    <header class="global-header"  style="background-image:url( /images/bg.jpg )">
+    <section class="header-text">
+      <h1><a href="https://www.xueyuyao.com/">薛玉瑶的博客</a></h1>
+      
+      <div class="tag-line">
+        每天都是一种练习
+      </div>
+      
+      <div class="sns-links hidden-print">
+  
+  <a href="#ZgotmplZ">
+    <i class="fa fa-envelope"></i>
+  </a>
+  
+  
+  
+  
+  <a href="https://plus.google.com/+yuyaoxue0617" target="_blank">
+    <i class="fa fa-google"></i>
+  </a>
+  
+  
+  
+  <a href="https://github.com/yuyaoxue" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+      
+      
+      <a href="https://www.xueyuyao.com/index.xml" class="btn-header btn-subscribe hidden-xs">
+        <i class="fa fa-rss" aria-hidden="true"></i>
+        &nbsp;Subscribe
+      </a>
+      
+    </section>
+  </header>
+  <main class="container">
+
+<div class="article-list">
+  
+  
+  <article>
+  <header>
+    <h2><a href="https://www.xueyuyao.com/2018/07/08/2018-07-08-unity_mompilation_bug/">Unity Compilation Bug</a></h2>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2018-07-08T22:35:26&#43;08:00">
+          Jul 8, 2018
+        </time>
+      </div>
+    </div>
+  </header>
+  <div>
+    前言 前几天在工作中，遇到一个有关 Unity 编译失效的问题，我修改的脚本保存后，Unity 自动编译后，编译失效。
+问题描述 我在 VS 里修改了代码保存之后，回到 Unity 里，Unity 自动编译，编译完成之后，还是我修改代码之前的情况（我修改的文件没有被编译）。
+问题复现 比如：我修改并了脚本 A，回到 Unity，Unity 自动编译，在编译期间修改并保存了脚本 B。编译完成之后，脚本 B 修改的部分极有可能没有被编译。
+找出原因 1.检查了 Unity 的自动编译开关 Edit-&gt;Unity Preferences-&gt;General-&gt;Auto Refresh; 排查了 Unity 的设置问题 2.后来问了同事之后才了解的，这个问题 Unity 标记最后编译时间机制有关系。对于 Unity 而言，VS 只是一个编辑脚本工具，所有的编译工作都在 Unity 这边执行。Unity 不会记每个文件的编译时间，只会记录一个总的最后的编译时间。比如 Unity 编译开始时间为 t1 编译过程需要 10s，最后的编译时间为 t1+10s，如果在这 10s 内又对脚本做了修改，恰好这个脚本已经被编译过了。那这个脚本不会重新被编译，导致了后面的那次修改没有被编译。
+解决办法 如果发生了编译失效问题，可以试试以下方法解决：
+1.修改并保存编译失效脚本；
+2.关闭并重新打开 Unity，重新修改并保存编译失效脚本。
+总结与思考 有两点疑问没有解决： 1.Unity 最后编译时间存储在什么地方？ 2.各个文件的编译时间存储在什么地方？
+后续查 Unity 标记编译时间相关的资料没查到。听同事说这是 Unity 编译的一个 Bug，个人解决不了，只能在做的过程中尽量避免。现在我都会尽量避免在 Unity 执行编译的时候修改脚本。
+  </div>
+  
+</article>
+
+  
+  
+  <hr/>
+  
+  <article>
+  <header>
+    <h2><a href="https://www.xueyuyao.com/2018/07/01/2018-07-01-first_public_flappy_bird/">First Publish FlapyBird</a></h2>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2018-07-01T22:35:26&#43;08:00">
+          Jul 1, 2018
+        </time>
+      </div>
+    </div>
+  </header>
+  <div>
+    前言 这是我在 GitHub 上发布的第一个游戏作品。确切地说，不能算是一个作品，只能是一个小 Demo。项目中所实现的功能效果，离原版差太多。这也让我明白，要做出好的东西，是需要花费很多精力去做的。
+游戏介绍 在《FlappyBird》这款游戏中，玩家只需要用一根手指来操控，点击触摸屏幕，小鸟就会往上飞，不断的点击就会不断的往高处飞。放松手指，则会快速下降。所以玩家要控制小鸟一直向前飞行，然后注意躲避途中高低不平的管子。
+项目工程
+项目已发布到GitHub Releases：项目地址
+制作目的 制作游戏的目的在于锻炼独立做项目的能力。由于工作的安排，有时候自己接触到的功能模块比较单一，这就导致自己涉足的其他方面的机会比较少，所以在工作之余写一些简单的 Demo，FlappyBird 是我前一段时间写的一款 Demo。
+流程框架 涉及到知识点总结 遇到的难点 功能难点：
+1.最核心的是小鸟的飞行和下落的功能，飞行的不自然，缺少上升下落的角度；
+2.使用 JSON 实现本地数据保存和读取来实现排行榜;
+3.资源动态管理;
+4.png 图片的动态切割
+设计难点:
+1.游戏框架，目前采用 Manager Of Managers;
+2.游戏状态，使用有限状态机管理游戏状态，还未写好。
+总结与思考 从项目开始到今天，有三周的时间（工作之外的时间），真正用到项目中总的时间大概就三四天的时间吧，这个项目的也不大，整体难度也不难，做起来感觉很费时间，实现一个小功能，花时间比较多，而且返工的次数很多。
+这个项目做下来，自己身上已知的好多问题突显出来了。比如知识的缺乏，缺乏自制力，严重拖延症等。想的太多，做的太少，可能是我最大的问题了。
+我接下来要做的是上面列出的难点。之后会不断的完善缺少的功能，不定期的更新 FlappyBird 的项目进度。
+反思和记录下来自己问题，努力下一个游戏，项目的完成度和质量高一些。
+  </div>
+  
+</article>
+
+  
+  
+  <hr/>
+  
+  <article>
+  <header>
+    <h2><a href="https://www.xueyuyao.com/2018/06/24/2018-06-24-canvas_and_camera/">Unity API 之 Canvas 与 Camera</a></h2>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2018-06-24T22:35:26&#43;08:00">
+          Jun 24, 2018
+        </time>
+      </div>
+    </div>
+  </header>
+  <div>
+    前言 最近在做一个 2D 游戏，项目做的差不多了，整理一下自己在制作过程中用到的知识点，这篇写 Canvas 与 Camera 的使用。
+Canvas 画布是所有 UI 元素都应该在其中的区域。Canvas 是一个带有画布组件的游戏对象，所有 UI 元素都必须是此类画布的子元素。下面是 Canvas 组件
+Canvas 有以下三种渲染模式：
+1.Screen Space Camera
+此模式画布被放置在指定的摄像机前的距离。UI 元素由这个摄像头呈现，这意味着摄像头的设置会影响 UI 的外观。如果将相机设置为透视，UI 元素将以透视的方式呈现，视角的失真程度可以通过相机的视角来控制。如果屏幕被调整了大小，改变了分辨率，或者相机的截屏改变了，画布也会自动地改变大小以匹配。
+tip：如果想在 UI 上显示特效，可以使用此渲染模式
+2.Screen Space Overlay
+此模式将 UI 元素放置在场景顶部呈现的屏幕上。如果屏幕被调整大小或改变分辨率，画布将自动改变大小以匹配它。
+tip：如果想在 UI 上显示特效 ，此模式不适用。
+3.World Space
+在此模式中，画布将表现为场景中的任何其他对象。画布的大小可以通过它的 Rect 变换来手动设置，UI 元素会基于 3D 布局呈现在场景中的其他对象的前面或后面。这对于注定要成为世界一部分的 UI 是有用的。
+UI 适配
+Canvas Scaler
+对于设置为“Screen Space - Overlay” or “Screen Space - Camera”的画布，可以将画布比例器 UI 比例模式设置为 Constant Pixel Size, Scale With Screen Size, or Constant Physical Size。
+  </div>
+  
+  <footer>
+    <ul class="pager">
+      <li class="next"><a href="https://www.xueyuyao.com/2018/06/24/2018-06-24-canvas_and_camera/">Read more <span aria-hidden="true">&raquo;</span></a></li>
+    </ul>
+  </footer>
+  
+</article>
+
+  
+  
+  <hr/>
+  
+  <article>
+  <header>
+    <h2><a href="https://www.xueyuyao.com/2018/06/19/2018-06-19-sprite_and_image/">Unity Sprite 与 Image 有什么区别？</a></h2>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2018-06-19T22:35:26&#43;08:00">
+          Jun 19, 2018
+        </time>
+      </div>
+    </div>
+  </header>
+  <div>
+    前言 最近在做一个 2D 游戏，用到了 Sprite 与 Image。UI 界面使用 Image ,游戏场景相关制作使用 Sprite。后来跟小伙伴交流的时候，提到了这一点，说到具体原理，我记得是渲染方式不同，Image 的渲染方式是 Canvas Renderer；Sprite 的渲染方式是 Sprite Renderer，至于具体为什么要使用，一知半解。
+异同 1.都是使用一个 Sprite 源进行渲染，而 Image 需要位于 Canvas 下才能显示出来。
+2.场景中的 Sprite 可以像普通的 3D 游戏物体一样处理，通过 Transform 组件进行移动，旋转等操作；而 Image 则使用 RectTransform 进行布局，以便通过 Canvas 统一管理，RectTransform 可以设置大小，对齐方式等。
+3.同一 Canvas 下 不同的 Image 的渲染顺序是根据 Image 在 Hierarchy 的上下顺序渲染的，上面的先被渲染，下面的后被渲染；不同的 Sprite 是根据 Order in Layer 数值的大小渲染的，数值小的先被渲染，数值大的后被渲染。
+4.Image 和 Sprite 都可以引用 Material; 都可以通过 Color 修改颜色；如果想对图片进行拉伸，而不影响图片的显示， Sprite 可以通过 DrawMode 修改渲染模式，Image 则是通过 Image Type 修改 Image 的显示方式。
+  </div>
+  
+  <footer>
+    <ul class="pager">
+      <li class="next"><a href="https://www.xueyuyao.com/2018/06/19/2018-06-19-sprite_and_image/">Read more <span aria-hidden="true">&raquo;</span></a></li>
+    </ul>
+  </footer>
+  
+</article>
+
+  
+  
+  <hr/>
+  
+  <article>
+  <header>
+    <h2><a href="https://www.xueyuyao.com/2018/06/14/2018-06-14-unity_compilation/">Unity 文件夹编译顺序</a></h2>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2018-06-14T22:35:26&#43;08:00">
+          Jun 14, 2018
+        </time>
+      </div>
+    </div>
+  </header>
+  <div>
+    Unity 特殊文件夹编辑顺序 前一段时间做图文混排导入了一个插件 Super Text Mesh，把文件夹直接导入到项目根目录下 Assets 文件夹里面，忘记放到 Plugins 文件夹下。之后再转移文件目录的时候，会报一个外部类不存在之类的错误，查了半个小时无果，同事提示我查 Unity 的编译顺序，看完 Unity 相关的官方文档之后恍然大悟，原来跟 Unity 的特殊文件夹的编译顺序有关。
+在使用 Unity 创建项目的时候，我们可以根据需求创建相应的文件夹；不过有一些特殊文件夹名称会被 Unity 解释为一个指令，文件夹中的内容会被 Unity 特殊对待，这些文件夹的会影响脚本编译的编译顺序。
+Assets
+Plugins
+SteamingAssets
+StandardAseets
+Editor
+Resources
+Editor
+default resources
+以上是 Unity特殊文件夹名称
+有关于这些特殊文件夹名称的相关信息，官网文档Special folder names给出了详细的说明
+脚本编译有四个不同的阶段，处于哪个阶段编译由其父目录确定。
+编译阶段：
+阶段1：编译Standard Assets、Pro Standard Assets、Plugin中的运行时脚本
+阶段2：编译Standard Assets、Pro Standard Assets、Plugin中的Editor脚本
+阶段3：编译其他不在Editor目录下的脚本
+阶段4：编译Editor目录下的脚本
+不同的编译顺序对脚本之前的引用很重要。基本规则是 被引用的类一定是在较早的阶段编译的。也就是说，在当前阶段之后编译的任何内容都不能被引用。在当前结算或早起阶段编译的任何内容都是完全可用。
+我出现的情况是 我转移到Plugins的文件夹里面有脚本调用 Plugins以外的普通文件夹里的脚本。因为Plugins文件夹的编译顺序比Plugins之外的普通文件夹的编译顺序靠前，所以会报 “xx类未定义，找不到xx类的定义”之类的问题。
+解决了我的问题之后，回头想想为什么要放到 Plugins 呢？除了规范文件夹的目录位置，还有什么作用呢？
+在网上查了一些信息，大概是说会缩短项目的编译时间。
+如果项目当中一些长时间不需要改动的脚本代码放到特殊文件夹里面，这些代码只需要编译一次，这样会缩短项目的编译时间。
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash; DLL 分割线 &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;
+程序集 DLL 工作环境：
+语言：C#
+Unity 版本：2017.
+  </div>
+  
+  <footer>
+    <ul class="pager">
+      <li class="next"><a href="https://www.xueyuyao.com/2018/06/14/2018-06-14-unity_compilation/">Read more <span aria-hidden="true">&raquo;</span></a></li>
+    </ul>
+  </footer>
+  
+</article>
+
+  
+  
+  <hr/>
+  
+  <article>
+  <header>
+    <h2><a href="https://www.xueyuyao.com/2018/06/09/2018-06-09-flappybird/">FlappyBird 制作进度</a></h2>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2018-06-09T22:35:26&#43;08:00">
+          Jun 9, 2018
+        </time>
+      </div>
+    </div>
+  </header>
+  <div>
+    FlappyBird 制作进度： 1.创建 GitHub 仓库；
+2.安装 Unity2018.1.0b12,创建 Unity 工程，导入项目资源；
+3.处理图集；
+4.整理整体思路，创建相关文件夹以及目前会涉及到的脚本；
+5.根据背景图大小设置 Camera 的相关参数；
+6.制作 Bird ,Wall 等预制体以及相关动画；
+7.制作 Start、GameOver、Score 等 UI 界面。
+FlappyBird 制作进度 6月9号 1.创建游戏状态机，bird的状态机
+2.Bird 默认飞行，按键向上飞行
+3.Bird 与 Walls、Ground 的碰撞检测
+剩余功能：
+1.动态加载 Wall、ground、bird。
+2.Audio 音效系统
+3.完善状态机，将游戏流程串联起来。
+4.评分机制
+5.游戏模式：简单，复杂，困难
+FlappyBird 制作进度 6月11号 1.简易 UIManager
+2搭建（Start, Ready,Gameover）界面；
+3.Bird 的碰撞检测;
+4.Ground Pipe 循环移动;
+5.创建 GameMansger 实现游戏循环；
+未完成部分:
+1.音效管理器；
+2.根据选择的不同难度，Pipe 的动态加载；
+3.加分机制（加分，本地数据存储）；
+4.随机背景颜色；
+5.Bird （随机颜色，上升掉落角度调整）;
+  </div>
+  
+</article>
+
+  
+  
+  <hr/>
+  
+  <article>
+  <header>
+    <h2><a href="https://www.xueyuyao.com/2018/06/03/2018-06-03-regexnote/">正则表达式必知必会读书笔记</a></h2>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2018-06-03T22:35:26&#43;08:00">
+          Jun 3, 2018
+        </time>
+      </div>
+    </div>
+  </header>
+  <div>
+    简介 正则表达式是一些用来匹配和处理文本的字符串。正则表达式是用正则表达式语言创建的，没有能够直接安装并运行的程序，是内置与其他语言或软件产品里的迷你语言。几乎所有的语言或工具都支持正则表达式。语法是正则表达式最容易掌握的部分，真正的挑战市学会如何运用那些语法把实际问题分解为一系列正则表达式并最终解决，所以必需通过实践才能真正掌握他们。
+例外，正则表达式里区分大小写的，大多数正则表达式里的实现也支持不区分字母大小写的匹配操作。
+匹配单个字符 “.” 字符是元字符，可以匹配任意单个字符，确切得说：只能匹配出了换行符以外得任何单个字符。
+匹配特殊字符：
+“.” 在正则表达式里有特殊含义，如果想要匹配字符本身的话，要在前面加上 “\” 来对他进行转义。 “\” 是元字符，用来对字符进行转义，在正则表达式里，有特殊含义得字符序列总是以 “\” 字符开头
+匹配一组字符 左括号 [ 是元字符，它标志着一个字符集合的开始；右括号 ] 是元字符，它标志着一个字符集合的结束。
+使用 元字符 [ 和 ] 定义一个字符集合，必须匹配该集合里的字符之一。[ ] 里可以写你要匹配的字符，如：[a],[abcdefg]；也可以匹配字符区间 [0-9]，[A-Z]；也可以取非字符 [^0-9]
+连字符：
+“-” (连字符) 是一个特殊的元字符，作为元字符只能在 [ 和 ] 之间，在字符集合以外的地方，只是一个普通字符，只能与 “-” 本身相匹配。（因此，在正则表达式里，“-” 字符不需要被转义 “?” 需要做测试）
+取非字符：
+字符集合通常用来指定一组必需匹配其中之一的字符，但在某些场合，需要反过来做，给出一组不需要得到的字符。即：除了那个字符集和里的字符，其他字符都可以匹配。 使用 “^” 元字符表明想对一个字符集合进行取非匹配。
+“^” 的效果将作用于给定字符集和里的所有字符或字符区间，而不是仅限于紧跟在 “^” 字符后面的那一个字符或者字符区间。
+使用元字符 元字符大致分为两种：一种是用来匹配文本的，比如（.），另一种是正则表达式中的语法所要求的（比如 [ 和 ] ）
+对特殊字符进行转义
+元字符是一些在正则表达式里有着特殊含义的字符。因为有着特殊的含义，所以这些字符就无法用来表达它们本身，所以就需要一个转义字符 “\” ，例如 “.” 将匹配到这个字符本身，而不是它的特殊含义。
+任何一个元字符都可以通过给它加上一个反斜杠字符（\）作为前缀的方法来转义。
+note：配对的元字符 比如 [ 或 ] 不用作元字符时必须转义，否则正则表达式分析器很可能会抛出一个错误。
+  </div>
+  
+  <footer>
+    <ul class="pager">
+      <li class="next"><a href="https://www.xueyuyao.com/2018/06/03/2018-06-03-regexnote/">Read more <span aria-hidden="true">&raquo;</span></a></li>
+    </ul>
+  </footer>
+  
+</article>
+
+  
+  
+  <hr/>
+  
+  <article>
+  <header>
+    <h2><a href="https://www.xueyuyao.com/2018/05/29/2018-05-29-githubcustomdomain/">GitHub 自定义域名</a></h2>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2018-05-29T22:35:26&#43;08:00">
+          May 29, 2018
+        </time>
+      </div>
+    </div>
+  </header>
+  <div>
+     GitHub 网站建起来有一周了，GitHub 支持自定义域名，于是就想着买个自己域名作为网站门面
+购买域名 通过同事的推荐下，在 namesilo 购买的域名。
+在GitHub配置 我是第一次配置，所以想做个总结记录下。
+官网手册里写的比较详细，链接 GitHub 官网配置文档。
+在 GitHub 配置，需要以下几个步骤：
+1.需要在你的 GitHubPages 的根目录下创建 CNAME 文件，里面只写上你的域名，如 xueyuyao.com
+2.进入你的 GitHub Pages 里，选择 Settings。 下面有一个 GitHub Pages 的标签里面的 Custom domain 下面写下你的域名 ，如果你配置的是 www 的，域名前要加 www。
+3.在 namesilo 里配置
+登录 namesilo，在右上角点击 Manage My Domains。
+点击右边蓝色的按钮
+在框内填写你的对应的信息，最后点击 SUBMIT
+提交之后 DNS 配置有延迟，可以通过 nslookup 命令 可以查到 DNS 记录的生存时间还可以指定使用哪个 DNS 服务器进行解释。
+通过下面代码测试 DNS 记录配置是否成功。
+dig docs.example.com +nostats +nocomments +nocmd  
+  </div>
+  
+</article>
+
+  
+  
+  <hr/>
+  
+  <article>
+  <header>
+    <h2><a href="https://www.xueyuyao.com/2018/05/28/2018-05-27-debuging/">调试九法</a></h2>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2018-05-28T22:35:26&#43;08:00">
+          May 28, 2018
+        </time>
+      </div>
+    </div>
+  </header>
+  <div>
+    Debuging 调试在编程工作中很常见，几乎每天都会很它打交道。可以说对于编程人员来说是一件很困扰的事情，有时候查找一个 Bug 原因，需要花费大量的时间和精力。
+本书一共总结了调试规则九则：
+1.理解系统
+2.制造失败
+3.不要想，而要看
+4.分而治之
+5.一次只改一个地方
+6.保持审计跟踪
+7.检查插头
+8.获得全新观点
+9.如果你不修复 Bug，它将依然存在
+单看这 9 个规则的标题，会有熟悉的感觉吧，会不会跟自己平时调试的时候，有一些方法差不多，觉得很简单。那回想一下，这些简单的规则，是否都能用对地方呢，是否在关键的时候，想的到呢？
+其实在实际工作中，有时候越简单的规则往往越被人忽略。有些规则显而易见，会记得运用在特定的问题上，越往往不容易；有时候会被人忽视，有时候会走所谓的捷径，最终所花的时间越久。所以看的过程中，有时候会产生共鸣；有时候会暗自懊悔，自己为什么当时没有使用这种调试方法，所以要记住并运用好这些规则会很有帮助。
+读这本书并写下读书笔记，最主要的是想提高自己的调试能力，提高工作效率；当然也能节省下来时间去做其他的事情。 书中每个规则里面都有详细细分了规则使用的不同情况，还有举例说明。我把自己在看书过程中的想法记录一下，加深下对于规则的理解，以便更好的运用到工作生活中去。
+理解系统 项目已经到了中后期，基本每天会被分配到不同的 Bug，有时候会接到自己不熟悉的功能 Bug，接到这样的 Bug，首先要做的工作就是理解系统。
+理解系统就是你必须掌握系统的工作原理以及它是如何设计的，在某些情况下，还要知道为什么这么设计，如果你没有理解系统的某个部分，那么通常就是出问题的地方。
+『昨天我在查找一个 Bug 的原因：我查找到在跟 AI 一起比赛时，对方使用的 Buff 跟显示出来的一致；跟真实的玩家比赛时，对方使用的 Buff 跟显示出来的不一致。我咨询了主程 AI 跟真实玩家的数据上的区别：AI 的 Buff 使用是纯客户端处理，而真实的玩家需要发送给服务端，服务端会再进行计算，再分发给其他玩家的。我断定问题出在服务器那边。最后结果肯定不是服务端的问题，问题出在客户端读取服务端的一个类型 type 上，type 并不是 BuffType 而是需要做一个类型转换，之前直接当做 BuffType 接收的，所以会出现对方使用跟显示不一致的问题。』
+上面的事例中我忽略了一个错误，就是没有理解系统，我没有去查看这个功能的数据接口相关的文档说明，导致了判断错误。
+在开发的过程中，在接触到新的功能时、修改 Bug，容易犯经验主义错误，没有仔细的看相关文档，导致最后漏掉功能细节，或者修改 Bug 不彻底，甚至找不到出现 Bug 原因。
+理解系统可以通过以下几方面来做：
+1.阅读手册，手册里会告诉你正确的使用方法；
+2.逐字逐句的阅读整个手册，解决问题的方法可能就隐藏在不起眼的角落；
+3.知道什么是正常的，即必须掌握你所工作技术领悟内的基础知识，才能知道什么是正常的；
+4.知道工作流程：当你尝试查找错误时，必须知道要查找的路线；
+5.调试工具是用来观察系统的眼和耳，你必须选择正确的工具，正确地使用工具，并正确地解释得到的结果；你越是精通工具，就越容易查明系统中发生了什么事情；
+6.了解你的工具：调试工具是用来观察系统的眼和耳，你必须选择正确的调试工具，正确的使用工具，并正确的解释得到的结果。还要必须了解工具的局限性，可以显示什么错误，不能显示什么错误。还必须了解开发工具，所使用的编程语言；
+7.在项目中，对一个组件或者语法的运用有分歧，不要盲目的相信自己的记忆力，不要猜测，去查阅手册，要养成良好的查阅习惯。
+制造失败 有时候理解了系统，还是锁定不了 Bug 的来源，这时候就需要执行下一个方案了。
+1.制造失败：顾名思义就是把失败再重复一遍，或者几遍。
+为什么要制作失败呢？
+  </div>
+  
+  <footer>
+    <ul class="pager">
+      <li class="next"><a href="https://www.xueyuyao.com/2018/05/28/2018-05-27-debuging/">Read more <span aria-hidden="true">&raquo;</span></a></li>
+    </ul>
+  </footer>
+  
+</article>
+
+  
+  
+  <hr/>
+  
+  <article>
+  <header>
+    <h2><a href="https://www.xueyuyao.com/2018/05/23/2018-05-23-supertextmesh/">图文混排总结</a></h2>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2018-05-23T22:35:26&#43;08:00">
+          May 23, 2018
+        </time>
+      </div>
+    </div>
+  </header>
+  <div>
+    图文混排总结 最近在做图文混排相关的功能，先后使用了几种方式实现；有的本身有问题，有的不适用与我们的项目， 总结一下以后略过这些坑。
+TextWithImage Text 中加载个 Image 是没有问题，加载1个以上，就会报错(错误位置是 TextWithImage 里 99 行)，将多余的 Image 的 enable 设置为 false，不能进行设置，删除等操作，还会出现加载一个 Image 创建出 2 个， 加载 2 个，创建出 3 个&hellip;翻倍的创建 Image，消耗性能。
+TextInlineSprite 实现原理：（text中插入图片） 1：总体显示方面都还可以 (可以设置 Image 显示大小，支持动态图）
+2：显示 Bug（表情会出现丢失的情况，关掉界面再打开就会显示）
+3: 需要手动清理画布上的表情 list 显示(如果是分页显示的话，切换表情时，需要把前一个 Image 内同清理掉)
+4:最严重的问题时分辨率适配问题(不同比例的分辨率，表情位置会出现偏差，目前没有找到合适的办法解决)， 在网上看的是， 写插件的作者之前设计的时候，没有把适配考虑进去，
+5:性能未测试
+参考链接：TextInlineSprite
+EmojiText 实现原理：（文字和图片独立渲染） 这个方案目前想到有两个弊端：
+1：Outline、Shadow 使用时，图片也被处理的问题
+2：图片是根据文字大小来渲染的，跟文字大小一样，显示看起来表情没有很突出
+参考链接：EmojiText (文字和图片独立渲染)
+上面的这些情况是我在项目中遇到的实际问题，以下链接中有详细的
+UGUI 图文混排解决方案和优化
+Super Text Mesh SuperTextMesh 是个功能很强大的插件，可以实现渲染动态文字，富文本支持图文混排。具体的功能类型有：文字效果、TextColor、Automatic、Master、Inline；（图文混排就是 Inline 的一种实现方式：Quads）还有一个比较好的是，SuperTextMesh 是开源的，根据项目的需求可以修改源代码。
+unityAssetStore 下载链接 Super Text Mesh
+  </div>
+  
+  <footer>
+    <ul class="pager">
+      <li class="next"><a href="https://www.xueyuyao.com/2018/05/23/2018-05-23-supertextmesh/">Read more <span aria-hidden="true">&raquo;</span></a></li>
+    </ul>
+  </footer>
+  
+</article>
+
+  
+</div>
+<nav class="pagination" role="navigation">
+
+  <hr />
+
+
+<a class="newer-posts" href="/"><span aria-hidden="true">&laquo;</span> Newer Posts</a>
+
+  <span class="page-number">Page 2 of 3</span>
+
+<a class="older-posts" href="/page/3/">Older Posts <span aria-hidden="true">&raquo;</span></a>
+
+</nav>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      &copy; Copyright notice
+    </div>
+    <div class="sns-links hidden-print">
+  
+  <a href="#ZgotmplZ">
+    <i class="fa fa-envelope"></i>
+  </a>
+  
+  
+  
+  
+  <a href="https://plus.google.com/+yuyaoxue0617" target="_blank">
+    <i class="fa fa-google"></i>
+  </a>
+  
+  
+  
+  <a href="https://github.com/yuyaoxue" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <script src="https://www.xueyuyao.com/js/highlight.pack.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'Your Google Analytics tracking id', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
+  
+  <script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+  for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
+  mixpanel.init("Your Mixpanel API key");</script>
+  
+</body>
+</html>
+
+
